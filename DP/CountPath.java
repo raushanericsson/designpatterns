@@ -18,6 +18,10 @@ class CountPath{
 		System.out.println(getPathCountDP(arr,2,3));
 	}
 
+
+
+	// Exponential or O(n^3)
+
 	public static int getPathCount(int[][] arr,int m,int n){
 		if(m == 0 ||  n == 0){
 			return 1;
@@ -29,6 +33,8 @@ class CountPath{
 
 
 // Use memoization 
+
+	// O(n) = O(mn) = O(n^2)
 
 	public static int getPathCountMemoization(int[][] mem,int[][] arr,int m,int n){
 		if(m == 0 || n == 0){
@@ -44,6 +50,7 @@ class CountPath{
 	}
 
 	// Use Dynamic Programming
+	//O(n) = O(mn)
 	public static int getPathCountDP(int[][] arr,int m,int n){
 		int[][] cache = new int[m+1][n+1];
 		cache[0][0] = 0;
