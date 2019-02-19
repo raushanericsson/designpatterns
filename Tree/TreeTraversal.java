@@ -1,5 +1,6 @@
 
-
+import java.util.LinkedList;
+import java.util.Queue;
 
 class TreeTraversal{
 
@@ -16,6 +17,7 @@ class TreeTraversal{
 
 
 	// Change Order for Pre & Post
+	// Time complexity O(n) visiting one node only once
 	private void inOrderTraversal(Node node){
 		if(node == null){
 			return;
@@ -37,12 +39,15 @@ class TreeTraversal{
 	// My Observation DFS is not possible through Stack or Queue 
 ;
 
+	// Time complexity O(n) = O(n) + O(n^3)
+	// exponential complexity
 	private void bfsTraversal(){
 		int height = getTreeHeight(this.root);
 		for(int i=1;i<=height;i++){
 			bfsTraversalUtility(this.root,i);
 		}
 	}
+
 
 	private void bfsTraversalUtility(Node node,int level){
 		if(node == null){
@@ -57,6 +62,7 @@ class TreeTraversal{
 	}
 
 	// Get Height of Tree
+	// Time complexity O(n)
 	private int getTreeHeight(Node node){
 		if(node == null){
 			return 0;
@@ -64,6 +70,27 @@ class TreeTraversal{
 		int left_height = 1 + getTreeHeight(node.left);
 		int right_height = 1 + getTreeHeight(node.right);
 		return Math.max(left_height,right_height);
+	}
+
+
+
+	// Time complexity O(n) , Space Complexity O(n) Visting one node only once
+	private void bfsTraversalUsingQueue(){
+		System.out.print(" BFS Using Queue : ");
+		Queue<Node> nodeQueue = new LinkedList<Node>();
+		if(this.root == null)
+			return;
+		nodeQueue.add(this.root);
+		while(nodeQueue.size() > 0){
+			Node temp = nodeQueue.poll();
+			System.out.print(temp.Data + " ");
+			if(temp.left != null){
+				nodeQueue.add(temp.left);
+			}
+			if(temp.right != null){
+				nodeQueue.add(temp.right);
+			}
+		}
 	}
 
 
@@ -80,6 +107,7 @@ class TreeTraversal{
 		System.out.println();
 		System.out.print(" Breadth First Traversal == ");
 		exampleTree.bfsTraversal();
+		exampleTree.bfsTraversalUsingQueue();
 	}
 
 
