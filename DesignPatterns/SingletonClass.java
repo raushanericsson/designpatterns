@@ -6,11 +6,16 @@ class SingletonClass{
 
 	}
 
+
+// To make thread safe we have to lock connection object for any upcoming threads 
 	static SingletonClass getSingletonObject(){
-		if(connection == null){
-			connection = new SingletonClass();
+		synchronized(connection){
+			if(connection == null){
+				connection = new SingletonClass();
+			}	
+			return connection;	
 		}
-		return connection;
+		
 	}
 
 
